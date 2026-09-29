@@ -1,0 +1,60 @@
+<div class="events">
+  <div class="events-content">
+    <span class="badge">Agenda</span>
+
+    <h2>
+      Nos <span>événements</span>
+    </h2>
+
+    <p class="events-description">
+      Découvrez les prochains événements et réservez votre place.
+    </p>
+
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Chercher par titre ou lieu"
+      [(ngModel)]="searchevent"
+    />
+
+    <div class="events-grid">
+      @for (event of filteredEvents(); track event.id) {
+        <article class="event-card">
+          <div class="event-date">{{ event.date | date: 'dd MMM yyyy' }}</div>
+
+          <h3>{{ event.title }}</h3>
+          <p class="event-desc">{{ event.description }}</p>
+
+          <div class="event-meta">
+            <span>📍 {{ event.location }}</span>
+            <span>
+              @if (event.price === 0) {
+                Gratuit
+              } @else {
+                {{ event.price }} DT
+              }
+            </span>
+          </div>
+
+          <div class="event-footer">
+            @if (event.nbPlaces > 0) {
+              <span class="places">{{ event.nbPlaces }} places restantes</span>
+            } @else {
+              <span class="places full">Complet</span>
+            }
+
+            <button
+              class="btn-reserve"
+              (click)="reserveEvent(event.id)"
+              [disabled]="event.nbPlaces === 0"
+            >
+              Réserver
+            </button>
+          </div>
+        </article>
+      } @empty {
+        <p class="no-events">Aucun événement trouvé.</p>
+      }
+    </div>
+  </div>
+</div>
