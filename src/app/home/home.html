@@ -94,6 +94,10 @@
             >
               Réserver
             </button>
+            <button [routerLink]="['/details', event.id]" class="btn-info"
+            >
+            Détails
+          </button>
           </td>
         </tr>
       } @empty {

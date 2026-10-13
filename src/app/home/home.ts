@@ -1,6 +1,8 @@
 import { Component, signal, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { EventM } from '../models/events';
+import { EVENTS, EventM } from '../models/events';
+import { RouterLink } from '@angular/router';
+
 
 interface Product {
   id: number;
@@ -12,7 +14,7 @@ interface Product {
 
 @Component({
   selector: 'app-home',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -62,35 +64,7 @@ export class Home {
     this.products.update((list) => list.filter((p) => p.id !== id));
   }
 
-  events = signal<EventM[]>([
-  {
-    id: 1,
-    title: 'Angular Workshop',
-    description: 'Introduction to signals and components',
-    location: 'Tunis',
-    date: '2026-10-15',
-    price: 30,
-    nbPlaces: 20,
-  },
-  {
-    id: 2,
-    title: 'Web Dev Meetup',
-    description: 'Talks and networking for developers',
-    location: 'Ariana',
-    date: '2026-11-02',
-    price: 15,
-    nbPlaces: 50,
-  },
-  {
-    id: 3,
-    title: 'Hackathon',
-    description: '24 hours to build a full-stack project',
-    location: 'Sousse',
-    date: '2026-11-20',
-    price: 0,
-    nbPlaces: 100,
-  },
-]);
+  events = signal<EventM[]>(EVENTS);
 
 reserveEvent(id: number): void {
   this.events.update((list) =>

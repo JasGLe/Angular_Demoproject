@@ -1,0 +1,95 @@
+<!-- Form 1: FormControl -->
+<div class="form-page">
+  <form class="form-card">
+    <h2 class="form-title">Connexion</h2>
+
+    <div class="form-group">
+      <label class="form-label" for="login">Login</label>
+      <input class="form-input" id="login" type="text" placeholder="Enter your email" [formControl]="login" />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="password">Password</label>
+      <input class="form-input" id="password" type="password" placeholder="Votre mot de passe" [formControl]="pwd" />
+    </div>
+
+    <button class="form-submit" type="button" (click)="save()" [disabled]="login.invalid || pwd.invalid">
+      Valider
+    </button>
+  </form>
+</div>
+
+<!-- Form 2: FormGroup -->
+<div class="form-page">
+  <form class="form-card" [formGroup]="FormUser">
+    <h1 class="form-title">Form group</h1>
+
+    <div class="form-group">
+      <label class="form-label" for="name">Name</label>
+      <input class="form-input" id="name" type="text" placeholder="Enter your name" formControlName="name" />
+    @if (FormUser.controls.name.invalid && FormUser.controls.name.touched) {
+    <small class="form-error">
+      @if (FormUser.controls.name.errors?.['required']) {
+        Le nom est obligatoire.
+      } @else if (FormUser.controls.name.errors?.['minlength']) {
+        Minimum 3 caractères.
+      }
+    </small>
+  }
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="email">Email</label>
+      <input class="form-input" id="email" type="email" placeholder="Enter your email" formControlName="email" />
+    @if (FormUser.controls.email.invalid && FormUser.controls.email.touched) {
+    <small class="form-error">
+      @if (FormUser.controls.email.errors?.['required']) {
+        L'email est obligatoire.
+      } @else if (FormUser.controls.email.errors?.['email']) {
+        Format d'email invalide.
+      }
+    </small>
+  }
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="cin">CIN</label>
+      <input class="form-input" id="cin" type="text" placeholder="Enter your CIN" formControlName="cin" />
+    @if (FormUser.controls.cin.invalid && FormUser.controls.cin.touched) {
+    <small class="form-error">
+      @if (FormUser.controls.cin.errors?.['required']) {
+        Le CIN est obligatoire.
+      } @else if (FormUser.controls.cin.errors?.['pattern']) {
+        Le CIN doit contenir 8 chiffres.
+      }
+    </small>
+  }
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="tel">Tel</label>
+      <input class="form-input" id="tel" type="tel" placeholder="Enter your phone number" formControlName="tel" />
+    @if (FormUser.controls.tel.invalid && FormUser.controls.tel.touched) {
+    <small class="form-error">
+      @if (FormUser.controls.tel.errors?.['required']) {
+        Le téléphone est obligatoire.
+      } @else if (FormUser.controls.tel.errors?.['pattern']) {
+        Le numéro doit contenir 8 chiffres.
+      }
+    </small>
+  }
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="adresse">Adresse</label>
+      <input class="form-input" id="adresse" type="text" placeholder="Enter your adresse" formControlName="adresse" />
+      @if (FormUser.controls.adresse.invalid && FormUser.controls.adresse.touched) {
+    <small class="form-error">L'adresse est obligatoire.</small>
+  }
+    </div>
+
+    <button class="form-submit" type="button" [disabled]="FormUser.invalid">
+      Valider
+    </button>
+  </form>
+</div>

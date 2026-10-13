@@ -1,0 +1,46 @@
+<div class="details">
+  <div class="details-card">
+    <a routerLink="/home" class="back-link">← Retour</a>
+
+    @if (event) {
+      <span class="badge">{{ event.date | date: 'dd MMM yyyy' }}</span>
+
+      <h2>{{ event.title }}</h2>
+      <p class="description">{{ event.description }}</p>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Lieu</span>
+          <span class="info-value">📍 {{ event.location }}</span>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Date</span>
+          <span class="info-value">📅 {{ event.date | date: 'dd/MM/yyyy' }}</span>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Prix</span>
+          <span class="info-value">
+            💰 {{ event.price === 0 ? 'Gratuit' : event.price + ' DT' }}
+          </span>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Places</span>
+          @if (event.nbPlaces > 0) {
+            <span class="info-value available">🎟️ {{ event.nbPlaces }} restantes</span>
+          } @else {
+            <span class="info-value full">🎟️ Complet</span>
+          }
+        </div>
+      </div>
+    } @else {
+      <div class="not-found">
+        <div class="not-found-icon">🔍</div>
+        <h2>Événement introuvable</h2>
+        <p class="description">Cet événement n'existe pas ou a été supprimé.</p>
+      </div>
+    }
+  </div>
+</div>
