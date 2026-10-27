@@ -1,0 +1,81 @@
+<div class="form-page">
+  <form class="form-card" [formGroup]="eventForm" (ngSubmit)="save()">
+    <h2 class="form-title">Ajouter un événement</h2>
+
+    <div class="form-group">
+      <label class="form-label" for="title">Titre</label>
+      <input class="form-input" id="title" type="text" placeholder="Ex : Angular Workshop" formControlName="title" />
+      @if (eventForm.controls.title.invalid && eventForm.controls.title.touched) {
+        <small class="form-error">
+          @if (eventForm.controls.title.errors?.['required']) {
+            Le titre est obligatoire.
+          } @else if (eventForm.controls.title.errors?.['minlength']) {
+            Minimum 3 caractères.
+          }
+        </small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="description">Description</label>
+      <textarea class="form-input form-textarea" id="description" rows="4" placeholder="Décrivez l'événement" formControlName="description"></textarea>
+      @if (eventForm.controls.description.invalid && eventForm.controls.description.touched) {
+        <small class="form-error">
+          @if (eventForm.controls.description.errors?.['required']) {
+            La description est obligatoire.
+          } @else if (eventForm.controls.description.errors?.['minlength']) {
+            Minimum 10 caractères.
+          }
+        </small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="location">Lieu</label>
+      <input class="form-input" id="location" type="text" placeholder="Ex : Tunis" formControlName="location" />
+      @if (eventForm.controls.location.invalid && eventForm.controls.location.touched) {
+        <small class="form-error">Le lieu est obligatoire.</small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="date">Date</label>
+      <input class="form-input" id="date" type="date" formControlName="date" />
+      @if (eventForm.controls.date.invalid && eventForm.controls.date.touched) {
+        <small class="form-error">La date est obligatoire.</small>
+      }
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="price">Prix (DT)</label>
+        <input class="form-input" id="price" type="number" min="0" formControlName="price" />
+        @if (eventForm.controls.price.invalid && eventForm.controls.price.touched) {
+          <small class="form-error">
+            @if (eventForm.controls.price.errors?.['required']) {
+              Le prix est obligatoire.
+            } @else if (eventForm.controls.price.errors?.['min']) {
+              Le prix ne peut pas être négatif.
+            }
+          </small>
+        }
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="nbPlaces">Nombre de places</label>
+        <input class="form-input" id="nbPlaces" type="number" min="1" formControlName="nbPlaces" />
+        @if (eventForm.controls.nbPlaces.invalid && eventForm.controls.nbPlaces.touched) {
+          <small class="form-error">
+            @if (eventForm.controls.nbPlaces.errors?.['required']) {
+              Le nombre de places est obligatoire.
+            } @else if (eventForm.controls.nbPlaces.errors?.['min']) {
+              Au moins 1 place.
+            }
+          </small>
+        }
+      </div>
+    </div>
+
+    <button class="form-submit" type="submit" [disabled]="eventForm.invalid">Ajouter</button>
+  </form>
+</div>

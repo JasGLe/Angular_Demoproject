@@ -162,3 +162,17 @@ h2 span {
   color: #94a3b8;
   padding: 2rem;
 }
+.btn-add-event {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-add-event:hover {
+  background: #2563eb;
+}

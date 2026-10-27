@@ -58,10 +58,17 @@
 </h2>
 
 <div class="table-container">
-    <input class="form-control"
-            type="text"
-            placeholder="Chercher par titre"
-            [(ngModel)]="searchevent"/>
+  <div class="toolbar">
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Chercher par titre"
+      [(ngModel)]="searchevent"
+    />
+    <button type="button" class="btn-add" routerLink="/add-event">
+      + Ajouter un événement
+    </button>
+  </div>
 
   <table class="products-table">
     <thead>
